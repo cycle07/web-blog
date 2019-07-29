@@ -13,6 +13,7 @@ import {
 import Header from './header';
 import Home from './home';
 import Footer from './footer';
+import Tag from './tag';
 
 @inject('main', 'mainAction')
 @observer
@@ -22,7 +23,13 @@ export default class Main extends Component {
   }
   componentDidMount() {
     const { mainAction } = this.props;
-    mainAction.init();
+    mainAction.initHeader();
+    mainAction.getPostList({
+      author: 'ghost'
+    });
+    mainAction.getAuthor();
+    mainAction.getTagList();
+    mainAction.getPageList();
   }
   render() {
     return (
@@ -30,8 +37,9 @@ export default class Main extends Component {
         <React.Fragment>
           <Header />
           <Switch>
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to="/tag" />
             <Route path="/home" component={Home} />
+            <Route path="/tag" component={Tag} />
           </Switch>
           <Footer />
         </React.Fragment>
