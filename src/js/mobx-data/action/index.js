@@ -19,6 +19,9 @@ export class MainAction {
       method: 'settings',
       type: 'browse'
     }).then(res => {
+      runInAction(() => {
+        this.main.setting = _.get(res, ['settings'])
+      });
       console.log('setting', res);
     });
   }
