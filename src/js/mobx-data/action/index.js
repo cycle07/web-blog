@@ -5,6 +5,7 @@ import { action, runInAction } from 'mobx';
 import fetch from 'helpers/api';
 import DataPromise from 'util/promise-class';
 import _ from 'lodash';
+import { readingTime } from 'helpers/helpers';
 
 export class MainAction {
   constructor(props) {
@@ -20,7 +21,7 @@ export class MainAction {
       type: 'browse'
     }).then(res => {
       runInAction(() => {
-        this.main.setting = _.get(res, ['settings'])
+        this.main.setting = _.get(res, ['settings']);
       });
       console.log('setting', res);
     });
@@ -43,6 +44,14 @@ export class MainAction {
       method: 'posts',
       type: 'browse'
     }).then(res => {
+      res.posts.forEach(post => {
+        console.log(
+          readingTime(post, {
+            minute: '1 minute read.',
+            minutes: '% minutes read.'
+          })
+        );
+      });
       console.log('list', res);
     });
   }

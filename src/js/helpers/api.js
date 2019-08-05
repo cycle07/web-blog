@@ -6,14 +6,14 @@ import config from 'config/config';
 import _ from 'lodash';
 
 const { url: host, key, version, auth } = config;
-// export default ({
+// export const helperFn = ({
 //   param = {},
 //   param2 = {},
 //   method = 'posts',
 //   type = 'browse'
 // }) =>
 //   new Promise((resolve, reject) => {
-//     config[method][type](
+//     helpers[method][type](
 //       {
 //         ...param
 //       },
