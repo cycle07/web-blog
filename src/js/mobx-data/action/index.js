@@ -28,7 +28,7 @@ export class MainAction {
   }
 
   @action('获取文章列表')
-  getPostList({ limit = 5, page = 1, tag = '', author = '' } = {}) {
+  async getPostList({ limit = 5, page = 1, tag = '', author = '' } = {}) {
     const param = {
       limit,
       page
@@ -39,21 +39,27 @@ export class MainAction {
     if (author) {
       param.filter = `author:${author}`;
     }
-    fetch({
+    return fetch({
       param,
       method: 'posts',
       type: 'browse'
-    }).then(res => {
-      res.posts.forEach(post => {
-        console.log(
-          readingTime(post, {
-            minute: '1 minute read.',
-            minutes: '% minutes read.'
-          })
-        );
-      });
-      console.log('list', res);
     });
+    // .then(res => {
+    //   res.posts.forEach(post => {
+    //     console.log(
+    //       readingTime(post, {
+    //         minute: '1 minute read.',
+    //         minutes: '% minutes read.'
+    //       })
+    //     );
+    //   });
+    // console.log('list', res);
+    // });
+  }
+
+  @action('存入相关')
+  saveHandle(key, data) {
+    this.main[key] = data;
   }
 
   @action('作者列表')
@@ -68,13 +74,34 @@ export class MainAction {
   }
 
   @action('Tag列表')
-  getTagList() {
-    fetch({
+  async getTagList() {
+    const tagList = [];
+    const res = await fetch({
       method: 'tags',
       type: 'browse'
-    }).then(res => {
-      console.log('taglist', res);
     });
+    for (let item of res.tags) {
+      const res2 = await this.getPostList({
+        limit: 0,
+        page: 0,
+        tag: item.slug
+      });
+      tagList.push({
+        name: item.name,
+        // value: item.id,
+        children: _.map(res2.posts, item2 => {
+          return {
+            name: item2.title,
+            // value: item2.id
+            value: 1
+          };
+        })
+      });
+    }
+    runInAction(() => {
+      this.main.taglist = tagList;
+    });
+    console.log('taglist', res);
   }
 
   @action('PAGE列表')
@@ -85,5 +112,10 @@ export class MainAction {
     }).then(res => {
       console.log('page', res);
     });
+  }
+
+  @action('开关tag')
+  switchTag() {
+    this.main.showTag = !this.main.showTag;
   }
 }

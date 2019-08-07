@@ -1,14 +1,22 @@
-@import "~global/common.less";
+@import '~global/common.less';
+
+html {
+  overflow: hidden;
+}
 
 html,
 body,
 #app-main {
   height: 100%;
   width: 100%;
+  overflow: hidden;
+  > div:nth-child(1) {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .wrap {
-  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -50,7 +58,7 @@ body,
       margin: 0 auto;
       text-align: center;
       &::after {
-        content: "";
+        content: '';
         width: 100%;
         height: 100%;
         position: absolute;
@@ -96,6 +104,9 @@ header {
       li {
         font-size: 15px;
         margin-left: 50px;
+        span {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -107,6 +118,28 @@ header {
     img {
       margin-left: 20px;
       height: 55px;
+    }
+  }
+  .tag {
+    position: fixed;
+    top: 0;
+    // height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.45);
+    .echarts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      height: 500px;
+      width: 500px;
+      background: rgba(0, 0, 0, 0.45);
+      .serverdataform {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 }

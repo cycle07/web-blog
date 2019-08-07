@@ -17,7 +17,7 @@ if (__DEV__) {
 const mapListObj = {
   // 自定义map和依赖关系,可覆盖cdn中的配置(注释的是例子
   map: {
-    // 旯里去获取到这个module
+    echarts: `${cdnHost}/js/echarts/4.1.0/echarts.min.js`,
   },
   meta: {
     // map的依赖关系
@@ -33,7 +33,7 @@ const mainListObj = {
     // 入口文件 签名
     ToLoad: true, // 是否马上加载
     // 依赖库
-    deps: ['react', 'react-router-dom', 'mobx', 'mobx-react']
+    deps: ['react', 'react-router-dom', 'mobx', 'mobx-react', 'echarts']
   }
 };
 for (const key in SystemJSConfig.meta) {

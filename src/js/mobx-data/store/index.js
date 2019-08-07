@@ -7,4 +7,6 @@ import { observable, ObservableMap } from "mobx";
  */
 export class Main {
   @observable setting = null;
+  @observable showTag = true;
+  @observable taglist = null;
 }
