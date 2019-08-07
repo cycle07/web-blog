@@ -5,6 +5,7 @@ import { Component } from 'react';
 import _ from 'lodash';
 import echarts from 'echarts';
 
+
 class ServerDataForm extends Component {
   constructor(props) {
     super(props);
@@ -15,107 +16,13 @@ class ServerDataForm extends Component {
   }
   myCharts(data) {
     const myChart = echarts.init(this.chart);
+    myChart.on('click', param => {
+      const id = _.get(param, ['data', 'id']);
+      if (id) {
+        this.props.onClose();
+      };
+    });
     console.log(data);
-    // const data = [
-    //   {
-    //     name: 'Grandpa',
-    //     children: [
-    //       {
-    //         name: 'Uncle Leo',
-    //         value: 15,
-    //         children: [
-    //           {
-    //             name: 'Cousin Jack',
-    //             value: 2
-    //           },
-    //           {
-    //             name: 'Cousin Mary',
-    //             value: 5,
-    //             children: [
-    //               {
-    //                 name: 'Jackson',
-    //                 value: 2
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             name: 'Cousin Ben',
-    //             value: 4
-    //           }
-    //         ]
-    //       },
-    //       {
-    //         name: 'Aunt Jane',
-    //         children: [
-    //           {
-    //             name: 'Cousin Kate',
-    //             value: 4
-    //           }
-    //         ]
-    //       },
-    //       {
-    //         name: 'Father',
-    //         value: 10,
-    //         children: [
-    //           {
-    //             name: 'Me',
-    //             value: 5,
-    //             itemStyle: {
-    //               color: 'red'
-    //             }
-    //           },
-    //           {
-    //             name: 'Brother Peter',
-    //             value: 1
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     name: 'Mike',
-    //     children: [
-    //       {
-    //         name: 'Uncle Dan',
-    //         children: [
-    //           {
-    //             name: 'Cousin Lucy',
-    //             value: 3
-    //           },
-    //           {
-    //             name: 'Cousin Luck',
-    //             value: 4,
-    //             children: [
-    //               {
-    //                 name: 'Nephew',
-    //                 value: 2
-    //               }
-    //             ]
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     name: 'Nancy',
-    //     children: [
-    //       {
-    //         name: 'Uncle Nike',
-    //         children: [
-    //           {
-    //             name: 'Cousin Betty',
-    //             value: 1
-    //           },
-    //           {
-    //             name: 'Cousin Jenny',
-    //             value: 2
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   }
-    // ];
-    
     this.option = {
       visualMap: {
         type: 'continuous',

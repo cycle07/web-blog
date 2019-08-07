@@ -16,7 +16,7 @@ export class MainAction {
 
   @action('粗祀发')
   initHeader() {
-    fetch({
+    return fetch({
       method: 'settings',
       type: 'browse'
     }).then(res => {
@@ -80,6 +80,7 @@ export class MainAction {
       method: 'tags',
       type: 'browse'
     });
+    let i = 1;
     for (let item of res.tags) {
       const res2 = await this.getPostList({
         limit: 0,
@@ -88,15 +89,16 @@ export class MainAction {
       });
       tagList.push({
         name: item.name,
-        // value: item.id,
+        // value: i,
         children: _.map(res2.posts, item2 => {
           return {
             name: item2.title,
-            // value: item2.id
-            value: 1
+            id: item2.id,
+            value: i
           };
         })
       });
+      i++;
     }
     runInAction(() => {
       this.main.taglist = tagList;

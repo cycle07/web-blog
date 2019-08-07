@@ -92,6 +92,8 @@ header {
   color: #fff;
   display: flex;
   align-items: center;
+  transition-duration: 0.3s;
+  // transition-delay: 0.1s;
   .inner {
     height: 100%;
     width: 1140px;
@@ -102,7 +104,7 @@ header {
     ul {
       display: flex;
       li {
-        font-size: 15px;
+        font-size: 13px;
         margin-left: 50px;
         span {
           cursor: pointer;
@@ -116,6 +118,8 @@ header {
     display: flex;
     align-items: center;
     img {
+      transition-duration: 0.3s;
+      // transition-delay: 0.1s;
       margin-left: 20px;
       height: 55px;
     }
@@ -133,13 +137,24 @@ header {
       right: 0;
       bottom: 0;
       margin: auto;
-      height: 500px;
-      width: 500px;
+      height: 800px;
+      width: 800px;
       background: rgba(0, 0, 0, 0.45);
       .serverdataform {
         height: 100%;
         width: 100%;
       }
+    }
+  }
+}
+
+.smallheader {
+  height: 60px;
+  line-height: 60px;
+  .logo {
+    img{
+      margin-left: 12px;
+      height: 32px;
     }
   }
 }

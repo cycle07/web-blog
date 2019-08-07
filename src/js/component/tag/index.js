@@ -16,7 +16,7 @@ export default class Tag extends Component {
   }
   handleClick(e) {
     const { mainAction } = this.props;
-    if (e.target.className === 'tag') {
+    if (!e || e.target.className === 'tag') {
       mainAction.switchTag();
     }
   }
@@ -24,7 +24,6 @@ export default class Tag extends Component {
     const {
       main: { taglist }
     } = this.props;
-    console.log(taglist);
     return (
       <div
         className="tag"
@@ -32,7 +31,7 @@ export default class Tag extends Component {
         onClick={this.handleClick}
       >
         <div className="echarts">
-          {taglist && <ServerDataForm data={toJS(taglist)} />}
+          {taglist && <ServerDataForm data={toJS(taglist)} onClose={() => this.handleClick()} />}
         </div>
       </div>
     );
