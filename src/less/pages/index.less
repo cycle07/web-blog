@@ -25,13 +25,14 @@ body,
 .home {
   flex: 1;
   width: 100%;
-  background: tomato;
+  // background: tomato;
   .banner {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     position: relative;
+    margin-bottom: 50px;
     //   &::after {
     //     content: "";
     //     width: 100%;
@@ -70,7 +71,83 @@ body,
     }
   }
   .list {
-    height: 1000px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+}
+
+.list_item {
+  .img {
+    cursor: pointer;
+    width: 870px;
+    height: 510px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+  }
+  .inner {
+    width: 730px;
+    margin: 0 auto;
+    .item_tag {
+      cursor: pointer;
+      margin: 50px auto 20px;
+      > span {
+        color: #a0a8bd;
+        padding: 4px 10px;
+        border: 1px solid transparent;
+        border-radius: 20px;
+        background: rgba(160, 168, 189, 0.2);
+        margin-right: 10px;
+        &:hover {
+          border: 1px solid #007bff;
+          color: #007bff;
+          background: transparent;
+        }
+      }
+    }
+    .item_title {
+      padding-bottom: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 40px;
+      .slh2();
+    }
+    .item_sample {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 0 40% 30px 0;
+      .content {
+        .slh3();
+      }
+      .rm {
+        cursor: pointer;
+        font-weight: bold;
+      }
+    }
+    .info {
+      line-height: 30px;
+      > span {
+        margin-right: 50px;
+      }
+    }
+  }
+  &::before {
+    content: '';
+    display: block;
+    height: 42px;
+    width: 730px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 auto 50px;
+  }
+  &:nth-child(1) {
+    &::before {
+      display: none;
+    }
+  }
+  &:nth-last-child(1) {
+    padding-bottom: 50px;
   }
 }
 
@@ -152,7 +229,7 @@ header {
   height: 60px;
   line-height: 60px;
   .logo {
-    img{
+    img {
       margin-left: 12px;
       height: 32px;
     }

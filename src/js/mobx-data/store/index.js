@@ -10,4 +10,5 @@ export class Main {
   @observable showTag = false;
   @observable taglist = null;
   @observable homelist = null;
+  @observable touchTop = true;
 }

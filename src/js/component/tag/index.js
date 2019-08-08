@@ -9,11 +9,13 @@ export default class Tag extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.initTagList();
   }
-  componentDidMount() {
+  initTagList() {
     const { mainAction } = this.props;
     mainAction.getTagList();
   }
+  componentDidMount() {}
   handleClick(e) {
     const { mainAction } = this.props;
     if (!e || e.target.className === 'tag') {
@@ -31,7 +33,12 @@ export default class Tag extends Component {
         onClick={this.handleClick}
       >
         <div className="echarts">
-          {taglist && <ServerDataForm data={toJS(taglist)} onClose={() => this.handleClick()} />}
+          {taglist && (
+            <ServerDataForm
+              data={toJS(taglist)}
+              onClose={() => this.handleClick()}
+            />
+          )}
         </div>
       </div>
     );

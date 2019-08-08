@@ -31,7 +31,8 @@ export class MainAction {
   async getPostList({ limit = 5, page = 1, tag = '', author = '' } = {}) {
     const param = {
       limit,
-      page
+      page,
+      include: 'authors,tags'
     };
     if (tag) {
       param.filter = `tag:${tag}`;

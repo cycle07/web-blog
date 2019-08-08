@@ -83,6 +83,7 @@ function Last({ data, build, path, userConfig, packPath }) {
   // data.externals['webModule-im'] = 'webModule-im';
 
   data.externals.echarts = 'echarts';
+  // data.externals.classnames = 'classnames';
   // data.externals.Apiutil = 'Apiutil';
 
   // data.output.library = '[name]'; // 输出到全局的名称

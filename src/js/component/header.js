@@ -1,9 +1,10 @@
-import { Component } from "react";
-import { observer, inject } from "mobx-react";
-import Tag from "./tag";
-import _ from "lodash";
+import { Component } from 'react';
+import classnames from 'classnames';
+import { observer, inject } from 'mobx-react';
+import Tag from './tag';
+import _ from 'lodash';
 
-@inject("main", "mainAction")
+@inject('main', 'mainAction')
 @observer
 export default class Header extends Component {
   constructor(props) {
@@ -12,17 +13,19 @@ export default class Header extends Component {
   }
   handleClick(label) {
     const { mainAction } = this.props;
-    if (label === "Tag") {
+    if (label === 'Tag') {
       mainAction.switchTag();
     }
   }
   render() {
     const {
-      main: { setting, showTag },
-      touchTop
+      main: { setting, showTag, touchTop }
     } = this.props;
+    const classes = classnames({
+      smallheader: !touchTop
+    });
     return (
-      <header className={touchTop ? "" : "smallheader"}>
+      <header className={classes}>
         <div className="logo">
           <img src={setting.logo} alt="" />
         </div>

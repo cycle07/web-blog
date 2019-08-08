@@ -20,7 +20,7 @@ class ServerDataForm extends Component {
       const id = _.get(param, ['data', 'id']);
       if (id) {
         this.props.onClose();
-      };
+      }
     });
     console.log(data);
     this.option = {
