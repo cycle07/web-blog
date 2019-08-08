@@ -42,7 +42,7 @@ export default class Main extends Component {
       e.preventDefault();
       e.stopPropagation();
     }
-    mainAction.saveHandle('touchTop', e.target.scrollTop === 0);
+    mainAction.saveHandle('touchTop', e.target.scrollTop);
   }
   // componentDidMount() {
   // const { mainAction } = this.props;

@@ -22,7 +22,7 @@ export default class Header extends Component {
       main: { setting, showTag, touchTop }
     } = this.props;
     const classes = classnames({
-      smallheader: !touchTop
+      smallheader: touchTop
     });
     return (
       <header className={classes}>

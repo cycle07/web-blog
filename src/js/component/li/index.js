@@ -1,7 +1,8 @@
-import { Component } from 'react';
-import _ from 'lodash';
-import { readingTime } from 'helpers/helpers';
-import { getDate } from 'helpers/time-deal';
+import { Component } from "react";
+import _ from "lodash";
+import { readingTime } from "helpers/helpers";
+import { getDate } from "helpers/time-deal";
+import ShiningUnit from "./shining";
 
 export default class Li extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class Li extends Component {
   componentDidMount() {}
   render() {
     const { data } = this.props;
-    console.log(data);
+    // console.log(data);
     return (
       <div className="list_item">
         {data.feature_image && (
@@ -25,20 +26,24 @@ export default class Li extends Component {
               <span>{item.name}</span>
             ))}
           </div>
-          <div className="item_title">{data.title}</div>
+          <div className="item_title">
+            <ShiningUnit>{data.title}</ShiningUnit>
+          </div>
           <div className="item_sample">
-            <span className="content">{data.excerpt}</span>
-            <span className="rm">read more</span>
+            <ShiningUnit>
+              <span className="content">{data.excerpt}</span>
+              <span className="rm">read more</span>
+            </ShiningUnit>
           </div>
           <div className="info">
-            <span>{getDate(data.updated_at)}</span>
-            <span>{data.authors[0].name}</span>
-            <span>
+            <ShiningUnit>{getDate(data.updated_at)}</ShiningUnit>
+            <ShiningUnit>{data.authors[0].name}</ShiningUnit>
+            <ShiningUnit>
               {readingTime(data, {
-                minute: '1 minute read.',
-                minutes: '% minutes read.'
+                minute: "1 minute read.",
+                minutes: "% minutes read."
               })}
-            </span>
+            </ShiningUnit>
           </div>
         </div>
       </div>
