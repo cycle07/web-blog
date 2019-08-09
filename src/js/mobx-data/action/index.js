@@ -28,7 +28,7 @@ export class MainAction {
   }
 
   @action('获取文章列表')
-  async getPostList({ limit = 5, page = 1, tag = '', author = '' } = {}) {
+  async getPostList({ limit = 8, page = 1, tag = '', author = '' } = {}) {
     const param = {
       limit,
       page,

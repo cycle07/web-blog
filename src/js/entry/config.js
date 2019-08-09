@@ -18,6 +18,8 @@ const mapListObj = {
   // 自定义map和依赖关系,可覆盖cdn中的配置(注释的是例子
   map: {
     echarts: `${cdnHost}/js/echarts/4.1.0/echarts.min.js`,
+    // 'icon-new': `${cdnHost}/icon/sort-pc-management-menu/1.0.0/iconfont.js` // 过度阶段，后期会更新到config中
+    icon: '//at.alicdn.com/t/font_1337932_0dmpbezwjpdq.js'
   },
   meta: {
     // map的依赖关系
@@ -33,7 +35,7 @@ const mainListObj = {
     // 入口文件 签名
     ToLoad: true, // 是否马上加载
     // 依赖库
-    deps: ['react', 'react-router-dom', 'mobx', 'mobx-react', 'echarts']
+    deps: ['react', 'react-router-dom', 'mobx', 'mobx-react', 'echarts', 'icon']
   }
 };
 for (const key in SystemJSConfig.meta) {

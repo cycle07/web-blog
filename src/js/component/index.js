@@ -17,6 +17,7 @@ import Header from './header';
 import Home from './home';
 import Footer from './footer';
 import ListHome from './listHome';
+import Loading from './loading';
 
 @inject('main', 'mainAction')
 @observer
@@ -44,12 +45,13 @@ export default class Main extends Component {
     }
     mainAction.saveHandle('touchTop', e.target.scrollTop);
   }
-  // componentDidMount() {
-  // const { mainAction } = this.props;
-  // mainAction.getAuthor();
-  // // mainAction.getTagList();
-  // mainAction.getPageList();
-  // }
+  componentDidMount() {
+    const { mainAction } = this.props;
+    mainAction.saveHandle('scrollDom', this.scrollDom.container.firstChild);
+    // mainAction.getAuthor();
+    // // mainAction.getTagList();
+    // mainAction.getPageList();
+  }
   render() {
     const {
       main: { setting }
@@ -57,11 +59,13 @@ export default class Main extends Component {
     return (
       <Router>
         <Scrollbars
-          className="scrollWrap"
+          ref={e => {
+            this.scrollDom = e;
+          }}
           {...scrollbarSetting()}
           onScroll={_.throttle(this.handleScroll, 100)}
         >
-          {setting && (
+          {setting ? (
             <div className="wrap">
               <Header />
               <Switch>
@@ -71,6 +75,8 @@ export default class Main extends Component {
               </Switch>
               <Footer />
             </div>
+          ) : (
+            <Loading />
           )}
         </Scrollbars>
       </Router>

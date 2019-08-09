@@ -9,6 +9,9 @@ export class Main {
   @observable setting = null;
   @observable showTag = false;
   @observable taglist = null;
-  @observable homelist = null;
+  @observable homelist = [];
+  @observable homelspage = 0;
+  @observable homelspages = 1;
   @observable touchTop = 0;
+  @observable scrollDom = null;
 }

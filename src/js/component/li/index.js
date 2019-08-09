@@ -1,8 +1,9 @@
-import { Component } from "react";
-import _ from "lodash";
-import { readingTime } from "helpers/helpers";
-import { getDate } from "helpers/time-deal";
-import ShiningUnit from "./shining";
+import { Component } from 'react';
+import _ from 'lodash';
+import { readingTime } from 'helpers/helpers';
+import { getDate } from 'helpers/time-deal';
+import ShiningUnit from './shining';
+import Icon from 'public/icon';
 
 export default class Li extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class Li extends Component {
             ))}
           </div>
           <div className="item_title">
-            <ShiningUnit>{data.title}</ShiningUnit>
+            <ShiningUnit className="item_title">{data.title}</ShiningUnit>
           </div>
           <div className="item_sample">
             <ShiningUnit>
@@ -36,12 +37,19 @@ export default class Li extends Component {
             </ShiningUnit>
           </div>
           <div className="info">
-            <ShiningUnit>{getDate(data.updated_at)}</ShiningUnit>
-            <ShiningUnit>{data.authors[0].name}</ShiningUnit>
             <ShiningUnit>
+              <Icon type="calendar" />
+              {getDate(data.updated_at)}
+            </ShiningUnit>
+            <ShiningUnit>
+              <Icon type="user" />
+              {data.authors[0].name}
+            </ShiningUnit>
+            <ShiningUnit>
+              <Icon type="time" />
               {readingTime(data, {
-                minute: "1 minute read.",
-                minutes: "% minutes read."
+                minute: '1 minute read.',
+                minutes: '% minutes read.'
               })}
             </ShiningUnit>
           </div>

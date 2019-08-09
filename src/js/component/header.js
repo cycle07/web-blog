@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { observer, inject } from 'mobx-react';
 import Tag from './tag';
 import _ from 'lodash';
+import GoTop from 'img/goTop.svg';
 
 @inject('main', 'mainAction')
 @observer
@@ -10,11 +11,23 @@ export default class Header extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleGoTop = this.handleGoTop.bind(this);
   }
   handleClick(label) {
     const { mainAction } = this.props;
     if (label === 'Tag') {
       mainAction.switchTag();
+    }
+  }
+  handleGoTop() {
+    const {
+      main: { scrollDom }
+    } = this.props;
+    if (scrollDom) {
+      scrollDom.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
   }
   render() {
@@ -45,6 +58,11 @@ export default class Header extends Component {
           </ul>
         </div>
         {showTag && <Tag />}
+        {touchTop !== 0 && (
+          <div className="goTop" onClick={this.handleGoTop}>
+            <img src={GoTop} alt="" />
+          </div>
+        )}
       </header>
     );
   }

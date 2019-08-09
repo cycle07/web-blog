@@ -1,10 +1,10 @@
-import { Component } from "react";
-import { observer, inject } from "mobx-react";
-import classnames from "classnames";
-import _ from "lodash";
-import Tiao from "img/pattern2@2x.gif";
+import { Component } from 'react';
+import { observer, inject } from 'mobx-react';
+import classnames from 'classnames';
+import _ from 'lodash';
+import Tiao from 'img/pattern2@2x.gif';
 
-@inject("main")
+@inject('main')
 @observer
 export default class ShiningUnit extends Component {
   constructor(props) {
@@ -12,6 +12,10 @@ export default class ShiningUnit extends Component {
     this.state = {
       done: false
     };
+    // this.arr = ['10-15', '16-24', '40-60', '50-75'];
+    this.random = this.getRandomInt(1, 75);
+    // [this.heng, this.shu] = _.shuffle(this.arr)[0].split('-');
+    [this.heng, this.shu] = [this.random * 1, this.random * 2];
   }
   getRandomInt = (min, max) =>
     Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) +
@@ -22,7 +26,7 @@ export default class ShiningUnit extends Component {
         children,
         main: { touchTop }
       } = this.props;
-      if (this.shiningUnit.offsetTop - touchTop <= 800) {
+      if (this.shiningUnit.offsetTop - touchTop <= 700) {
         this.setState({
           done: true
         });
@@ -32,16 +36,18 @@ export default class ShiningUnit extends Component {
   render() {
     const {
       children,
+      className,
       main: { touchTop }
     } = this.props;
     const { done } = this.state;
     const show = done
       ? false
       : this.shiningUnit
-      ? this.shiningUnit.offsetTop - touchTop > 800
+      ? this.shiningUnit.offsetTop - touchTop > 700
       : true;
     const classes = classnames({
-      shining_wrap: show
+      shining_wrap: show,
+      [className]: true
     });
     return (
       <span
@@ -50,10 +56,7 @@ export default class ShiningUnit extends Component {
           show
             ? {
                 backgroundImage: `url(${Tiao})`,
-                backgroundSize: `${this.getRandomInt(
-                  1,
-                  200
-                )}px ${this.getRandomInt(1, 200)}px`
+                backgroundSize: `${this.heng}px ${this.shu}px`
               }
             : {}
         }
