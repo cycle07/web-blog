@@ -18,6 +18,7 @@ import Home from './home';
 import Footer from './footer';
 import ListHome from './listHome';
 import Loading from './loading';
+import Detail from './detail';
 
 @inject('main', 'mainAction')
 @observer
@@ -50,7 +51,7 @@ export default class Main extends Component {
     mainAction.saveHandle('scrollDom', this.scrollDom.container.firstChild);
     // mainAction.getAuthor();
     // // mainAction.getTagList();
-    // mainAction.getPageList();
+    mainAction.getPageList();
   }
   render() {
     const {
@@ -67,11 +68,12 @@ export default class Main extends Component {
         >
           {setting ? (
             <div className="wrap">
-              <Header />
+              <Header {...this.props} />
               <Switch>
                 <Redirect exact from="/" to="/home" />
                 <Route path="/home" component={Home} />
                 <Route path="/list" component={ListHome} />
+                <Route path="/detail/:slug" component={Detail} />
               </Switch>
               <Footer />
             </div>

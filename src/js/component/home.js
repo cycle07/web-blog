@@ -72,7 +72,7 @@ export default class Home extends Component {
         {homelist.length > 0 && (
           <ul className="list">
             {_.map(toJS(homelist), item => (
-              <Li data={item} />
+              <Li data={item} {...this.props} />
             ))}
           </ul>
         )}

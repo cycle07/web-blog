@@ -20,4 +20,5 @@ export const getDate = str =>
             'Dec'
           ][parseInt(item) - 1]
         : item
-    ).join(' ');
+    )
+    .join(' ');

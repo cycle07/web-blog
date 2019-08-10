@@ -17,6 +17,8 @@ export default class Header extends Component {
     const { mainAction } = this.props;
     if (label === 'Tag') {
       mainAction.switchTag();
+    } else if (label === 'Home') {
+      location.href = location.origin + location.pathname;
     }
   }
   handleGoTop() {
@@ -36,13 +38,15 @@ export default class Header extends Component {
     } = this.props;
     const classes = classnames({
       smallheader: touchTop
+      ||
+      /#\/detail/g.test(location.hash)
     });
     return (
       <header className={classes}>
-        <div className="logo">
-          <img src={setting.logo} alt="" />
-        </div>
         <div className="inner">
+          <div className="logo" onClick={() => this.handleClick('Home')}>
+            <img src={setting.logo} alt="" />
+          </div>
           <ul>
             {_.map(setting.navigation, item => (
               <li>

@@ -45,7 +45,7 @@ body,
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    position: relative;
+    // position: relative;
     // margin-bottom: 50px;
     //   &::after {
     //     content: "";
@@ -57,14 +57,6 @@ body,
     //     background: inherit;
     //     filter: blur(0px);
     // }
-    // .mask {
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   width: 100%;
-    //   height: 50%;
-    //   background: -webkit-linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0)) ;
-    // }
     .desc {
       color: #777;
       font-size: 24px;
@@ -72,16 +64,6 @@ body,
       padding: 200px 0 0 0;
       margin: 0 auto;
       text-align: center;
-      // &::after {
-      //   content: '';
-      //   width: 100%;
-      //   height: 100%;
-      //   position: absolute;
-      //   left: 0;
-      //   top: 0;
-      //   background: inherit;
-      //   filter: blur(0px);
-      // }
     }
     .go_down {
       position: absolute;
@@ -96,6 +78,88 @@ body,
   }
   .list {
     max-width: 1140px;
+    margin: 0 auto;
+  }
+}
+
+.detail {
+  width: 100%;
+  padding-bottom: 100px;
+  .banner {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    &::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .mask_gaosi {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: inherit;
+      filter: blur(3px);
+    }
+    .banner_wrap {
+      position: absolute;
+      z-index:2;
+      width: 100%;
+    }
+    .banner_inner {
+      padding: 110px 0 50px;
+      margin: 0 auto;
+      width: 1140px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .title {
+        // flex: 1;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        font-size: 36px;
+        line-height: 50px;
+        color: #000;
+        font-weight: bold;
+        padding-right: 30%;
+        // .slh2();
+      }
+
+      .img_wrap {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        .date {
+          font-size: 18px;
+          line-height: 40px;
+          font-weight: bold;
+          margin-top: 5px;
+        }
+        .img {
+          margin-top: 60px;
+          width: 640px;
+          height: 360px;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+  .inner {
+    width: 1140px;
     margin: 0 auto;
   }
 }
@@ -215,7 +279,7 @@ footer {
 header {
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 5;
   background: rgba(0, 0, 0, 0.45);
   height: 120px;
   line-height: 120px;
@@ -231,7 +295,8 @@ header {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    // justify-content: flex-end;
+    justify-content: space-between;
     ul {
       display: flex;
       li {
@@ -239,20 +304,22 @@ header {
         margin-left: 50px;
         span {
           cursor: pointer;
+          font-weight: bold;
         }
       }
     }
-  }
-  .logo {
-    position: absolute;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    img {
-      transition-duration: 0.3s;
-      // transition-delay: 0.1s;
-      margin-left: 20px;
-      height: 55px;
+    .logo {
+      // position: absolute;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      img {
+        transition-duration: 0.3s;
+        // transition-delay: 0.1s;
+        // margin-left: 20px;
+        height: 55px;
+      }
     }
   }
   .tag {
@@ -291,10 +358,12 @@ header {
 .smallheader {
   height: 60px;
   line-height: 60px;
-  .logo {
-    img {
-      margin-left: 12px;
-      height: 32px;
+  .inner {
+    .logo {
+      img {
+        // margin-left: 12px;
+        height: 32px;
+      }
     }
   }
 }

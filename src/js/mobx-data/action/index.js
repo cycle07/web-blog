@@ -45,17 +45,15 @@ export class MainAction {
       method: 'posts',
       type: 'browse'
     });
-    // .then(res => {
-    //   res.posts.forEach(post => {
-    //     console.log(
-    //       readingTime(post, {
-    //         minute: '1 minute read.',
-    //         minutes: '% minutes read.'
-    //       })
-    //     );
-    //   });
-    // console.log('list', res);
-    // });
+  }
+
+  @action('获取文章详情')
+  getPostDetail(slug) {
+    return fetch({
+      param: { slug, include: 'authors,tags' },
+      method: 'posts/slug',
+      type: 'read'
+    });
   }
 
   @action('存入相关')
