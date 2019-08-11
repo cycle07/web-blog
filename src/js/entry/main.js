@@ -6,6 +6,9 @@ import { log } from 'util/debug-tool';
 import { render } from 'react-dom';
 import fp from 'lodash/fp';
 
+// import 'helpers/highlight/styles/arta.css';
+// import 'helpers/highlight/highlight.pack.js';
+
 import Main from 'component';
 
 import { Provider } from 'mobx-react';

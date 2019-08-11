@@ -105,6 +105,15 @@ export class MainAction {
     console.log('taglist', res);
   }
 
+  @action('Tag详情')
+  getTagDetail(slug) {
+    return fetch({
+      param: { slug, include: 'authors,tags' },
+      method: 'tags/slug',
+      type: 'read'
+    });
+  }
+
   @action('PAGE列表')
   getPageList() {
     fetch({
