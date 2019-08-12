@@ -19,7 +19,7 @@ const mapListObj = {
   map: {
     echarts: `${cdnHost}/js/echarts/4.1.0/echarts.min.js`,
     // 'icon-new': `${cdnHost}/icon/sort-pc-management-menu/1.0.0/iconfont.js` // 过度阶段，后期会更新到config中
-    icon: '//at.alicdn.com/t/font_1337932_0dmpbezwjpdq.js'
+    icon: '//at.alicdn.com/t/font_1337932_sx74yg2k24i.js'
   },
   meta: {
     // map的依赖关系

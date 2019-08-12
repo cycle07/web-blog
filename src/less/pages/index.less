@@ -1,4 +1,4 @@
-@import "~global/common.less";
+@import '~global/common.less';
 
 html {
   overflow: hidden;
@@ -19,7 +19,7 @@ body,
 .loading {
   height: 100%;
   width: 100%;
-  position: relative;
+  position: fixed;
   img {
     position: absolute;
     top: 0;
@@ -45,7 +45,7 @@ body,
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    // position: relative;
+    position: relative;
     // margin-bottom: 50px;
     //   &::after {
     //     content: "";
@@ -64,6 +64,7 @@ body,
       padding: 200px 0 0 0;
       margin: 0 auto;
       text-align: center;
+      text-shadow: 0 0 1px rgba(255,255,255,0.35);
     }
     .go_down {
       position: absolute;
@@ -75,6 +76,26 @@ body,
       height: 50px;
       cursor: pointer;
     }
+    .name {
+      font-size: 100px;
+      margin: -50px auto 0;
+      color: rgba(128, 128, 128, 0.6);
+      text-shadow: 0 0 6px rgba(255,255,255,0.35);
+      text-align: center;
+    }
+    // .tagWrap {
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   margin: auto;
+    //   border-radius: 5px;
+    //   background: rgba(0,0,0,0.3);
+    //   width: 780px;
+    //   height: 200px;
+    //   line-height: 200px;
+    // }
   }
   .list {
     max-width: 1140px;
@@ -91,7 +112,7 @@ body,
     position: relative;
     width: 100%;
     &::after {
-      content: "";
+      content: '';
       width: 100%;
       height: 100%;
       position: absolute;
@@ -100,7 +121,7 @@ body,
       background: rgba(255, 255, 255, 0.5);
     }
     .mask_gaosi {
-      content: "";
+      content: '';
       width: 100%;
       height: 100%;
       position: absolute;
@@ -146,8 +167,10 @@ body,
           margin-top: 5px;
         }
         .tags {
-          font-style: normal;
           cursor: pointer;
+          > i {
+            font-style: normal;
+          }
         }
         .img {
           margin-top: 60px;
@@ -169,6 +192,7 @@ body,
     .inner_left {
       line-height: 1.35;
       width: 75%;
+      padding-right: 15px;
       .pre {
         p:first-child {
           font-size: 1.25em;
@@ -254,6 +278,7 @@ body,
           padding: 16px 16px 16px 24px;
           margin-bottom: 50px;
           margin-right: 50px;
+          box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.4);
         }
       }
     }
@@ -291,11 +316,16 @@ body,
         .date,
         .tages {
           border-top: 1px solid #000;
+        }
+        .date {
           line-height: 60px;
         }
         .tages {
+          padding-top: 10px;
+          line-height: 36px;
           .item_tag {
             cursor: pointer;
+            display: inline-block;
             > span {
               font-size: 14px;
               color: #a0a8bd;
@@ -342,7 +372,7 @@ body,
           z-index: 2;
         }
         &::after {
-          content: "";
+          content: '';
           width: 100%;
           height: 100%;
           position: absolute;
@@ -391,6 +421,7 @@ body,
             border-bottom: 1px solid #fff;
             margin: 0 auto;
             cursor: pointer;
+            width: 75%;
             .slh();
           }
           > div:nth-child(7) {
@@ -413,6 +444,8 @@ body,
             margin: 16px auto;
             display: inline-block;
             border-bottom: 1px solid #fff;
+            width: 75%;
+            .slh();
           }
         }
       }
@@ -489,7 +522,7 @@ body,
     }
   }
   &::after {
-    content: "";
+    content: '';
     display: block;
     height: 42px;
     width: 730px;
@@ -529,21 +562,23 @@ body,
 
 footer {
   .logo {
+    // background: #1e2225;
     background: #000;
     text-align: center;
     justify-items: center;
     height: 36px;
     .inner {
-      width: 360px;
+      padding-top: 36px;
+      width: 300px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 100%;
       img {
-        width: 60px;
+        width: 50px;
         line-height: 60px;
-        margin:0 5px;
+        margin: 0 5px;
       }
     }
   }
@@ -551,7 +586,9 @@ footer {
     line-height: 64px;
     color: #fff;
     text-align: center;
-    background: #202226;
+    // background: #202226;
+    // background: #1e2225;
+    background: #000;
   }
 }
 
@@ -584,6 +621,27 @@ header {
         span {
           cursor: pointer;
           font-weight: bold;
+        }
+      }
+      .icons {
+        display: flex;
+        align-items: center;
+        svg {
+          cursor: pointer;
+          height: 18px;
+          width: 18px;
+        }
+        > svg:nth-child(1),
+        > svg:nth-child(2) {
+          margin-right: 10px;
+        }
+        &::before {
+          content: '';
+          width: 1px;
+          height: 20px;
+          background: #fff;
+          display: block;
+          margin: 0 30px 0 40px;
         }
       }
     }

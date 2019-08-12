@@ -1,8 +1,8 @@
-import { Component } from "react";
-import { observer, inject } from "mobx-react";
-import GhostLogo from "img/ghost.png";
+import { Component } from 'react';
+import { observer, inject } from 'mobx-react';
+import GhostLogo from 'img/ghost.png';
 
-@inject("main")
+@inject('main')
 @observer
 export default class Footer extends Component {
   constructor(props) {
@@ -18,19 +18,19 @@ export default class Footer extends Component {
           <div className="inner">
             <img
               src={
-                "https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.8/img/logo/logo_onwhite.png"
+                'https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.8/img/logo/logo_onwhite.png'
               }
               alt=""
             />
             <img
               src={
-                "https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.8/img/logo/Google.svg"
+                'https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.8/img/logo/Google.svg'
               }
               alt=""
             />
             <img
               src={
-                "https://img.alicdn.com/tfs/TB1Ly5oS3HqK1RjSZFPXXcwapXa-238-54.png"
+                'https://img.alicdn.com/tfs/TB1Ly5oS3HqK1RjSZFPXXcwapXa-238-54.png'
               }
               alt=""
             />

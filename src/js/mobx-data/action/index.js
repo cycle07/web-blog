@@ -23,7 +23,7 @@ export class MainAction {
       runInAction(() => {
         this.main.setting = _.get(res, ['settings']);
       });
-      console.log('setting', res);
+      // console.log('setting', res);
     });
   }
 
@@ -80,6 +80,7 @@ export class MainAction {
       type: 'browse'
     });
     let i = 1;
+    const cut = str => (str.length > 16 ? str.slice(0, 15) + '..' : str);
     for (let item of res.tags) {
       const res2 = await this.getPostList({
         limit: 0,
@@ -87,12 +88,13 @@ export class MainAction {
         tag: item.slug
       });
       tagList.push({
-        name: item.name,
+        name: cut(item.name),
+        tag: item.slug,
         // value: i,
         children: _.map(res2.posts, item2 => {
           return {
-            name: item2.title,
-            id: item2.id,
+            name: cut(item2.title),
+            slug: item2.slug,
             value: i
           };
         })
@@ -102,7 +104,6 @@ export class MainAction {
     runInAction(() => {
       this.main.taglist = tagList;
     });
-    console.log('taglist', res);
   }
 
   @action('Tag详情')

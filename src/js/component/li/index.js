@@ -16,7 +16,7 @@ export default class Li extends Component {
   }
   componentDidMount() {}
   render() {
-    const { data } = this.props;
+    const { data, history } = this.props;
     // console.log(data);
     return (
       <div className="list_item">
@@ -30,7 +30,14 @@ export default class Li extends Component {
         <div className="inner">
           <div className="item_tag">
             {_.map(data.tags, item => (
-              <span>{item.name}</span>
+              <span
+                onClick={() => {
+                  history.push(`/hometag/${item.slug}`);
+                  // location.reload();
+                }}
+              >
+                {item.name}
+              </span>
             ))}
           </div>
           <div className="item_title" onClick={this.handleOnClick}>
@@ -39,7 +46,6 @@ export default class Li extends Component {
           <div className="item_sample">
             <ShiningUnit>
               <span className="content">{data.excerpt}</span>
-
               <span className="rm" onClick={this.handleOnClick}>
                 read more
               </span>

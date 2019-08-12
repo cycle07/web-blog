@@ -1,12 +1,14 @@
-import { Component } from "react";
-import { getDate } from "helpers/time-deal";
-import { observer, inject } from "mobx-react";
-import _ from "lodash";
+import { Component } from 'react';
+import { getDate } from 'helpers/time-deal';
+import { observer, inject } from 'mobx-react';
+import _ from 'lodash';
+import Footer from './footer';
 
-import hljs from "highlight.js";
-import "highlight.js/styles/zenburn.css";
+import Loading from './loading';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/zenburn.css';
 
-@inject("main", "mainAction")
+@inject('main', 'mainAction')
 @observer
 export default class Detail extends Component {
   constructor(props) {
@@ -18,11 +20,16 @@ export default class Detail extends Component {
       tagImg: null,
       PostList: null
     };
+    this.his = this.props.match.url;
     // this.cw = window.document.body.offsetWidth;
     // this.ch = window.document.body.offsetHeight;
     // this.ch = 640;
     // this.bh = (this.cw / 16) * 9;
     this.handleOnClick = this.handleOnClick.bind(this);
+    this.init = this.init.bind(this);
+    this.init();
+  }
+  init() {
     const {
       mainAction: { getPostDetail, getPostList, getTagDetail }
     } = this.props;
@@ -48,29 +55,42 @@ export default class Detail extends Component {
     });
   }
   componentDidUpdate() {
+    if (this.props.match.url !== this.his) {
+      this.his = this.props.match.url;
+      this.init();
+      const {
+        main: { scrollDom }
+      } = this.props;
+      if (scrollDom) {
+        scrollDom.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
     if (this.state.th === 0) {
       this.setState({
         th: this.bannerDom.clientHeight
       });
     }
     if (this.html) {
-      const blocks = this.html.querySelectorAll("pre code");
+      const blocks = this.html.querySelectorAll('pre code');
       _.map(blocks, item => {
         hljs.highlightBlock(item);
       });
-      const imgDoms = this.html.querySelectorAll("img");
+      const imgDoms = this.html.querySelectorAll('img');
       _.map(imgDoms, item => {
-        if (item.getAttribute("width")) {
-          const rate = item.getAttribute("width") / item.getAttribute("height");
-          item.parentNode.setAttribute("style", `flex: ${rate} 1 0%;`);
+        if (item.getAttribute('width')) {
+          const rate = item.getAttribute('width') / item.getAttribute('height');
+          item.parentNode.setAttribute('style', `flex: ${rate} 1 0%;`);
         }
       });
     }
   }
-  handleOnClick(slug) {
+  handleOnClick(slug = '', type = 'detail') {
     const { history } = this.props;
-    history.push(`/detail/${slug}`);
-    location.reload();
+    history.push(`/${type}/${slug}`);
+    // location.reload();
   }
   get getHtml() {
     const { data } = this.state;
@@ -90,8 +110,7 @@ export default class Detail extends Component {
     } = this.props;
     const { data, th, tagImg, PostList, tagList } = this.state;
     const currentIndex = _.findIndex(PostList, item => item.id === data.id);
-    console.log(currentIndex);
-    if (!data) return null;
+    if (!data) return <Loading />;
     return (
       <div className="detail">
         <div
@@ -114,10 +133,15 @@ export default class Detail extends Component {
                 <span className="date">
                   {`${getDate(data.updated_at)} / `}
                   <i className="tags">
-                    {_.map(data.tags, item => item.name).join(" ")}
+                    {_.map(data.tags, item => (
+                      <i
+                        onClick={() => this.handleOnClick(item.slug, 'hometag')}
+                      >
+                        {`${item.name} `}
+                      </i>
+                    ))}
                   </i>
                 </span>
-
                 <div
                   className="img"
                   style={{
@@ -161,7 +185,10 @@ export default class Detail extends Component {
               <div className="date">{getDate(data.updated_at)}</div>
               <div className="tages">
                 {_.map(data.tags, item => (
-                  <div className="item_tag">
+                  <div
+                    className="item_tag"
+                    onClick={() => this.handleOnClick(item.slug, 'hometag')}
+                  >
                     <span>{item.name}</span>
                   </div>
                 ))}
@@ -176,23 +203,27 @@ export default class Detail extends Component {
                 className="tag_main"
                 style={{
                   backgroundImage: `url(${tagImg})`,
-                  width: `${currentIndex > 0 ? "30%" : "45%"}`
+                  width: `${currentIndex > 0 ? '30%' : '45%'}`
                 }}
               >
                 <div className="wrap">
                   <div>{`- ${setting.title} -`}</div>
                   <div>{`${data.tags[0].name}`}</div>
-                  <div>{"♾"}</div>
+                  <div>{'♾'}</div>
                   <div onClick={() => this.handleOnClick(tagList[0].slug)}>
                     {tagList[0].title}
                   </div>
                   <div onClick={() => this.handleOnClick(tagList[1].slug)}>
-                    {_.get(tagList, [1, "title"], null)}
+                    {_.get(tagList, [1, 'title'], null)}
                   </div>
                   <div onClick={() => this.handleOnClick(tagList[2].slug)}>
-                    {_.get(tagList, [2, "title"], null)}
+                    {_.get(tagList, [2, 'title'], null)}
                   </div>
-                  <div>{`See all ${tagList.length} post >`}</div>
+                  <div
+                    onClick={() =>
+                      this.handleOnClick(data.tags[0].slug, 'hometag')
+                    }
+                  >{`See all ${tagList.length} post >`}</div>
                 </div>
               </div>
             )}
@@ -203,7 +234,7 @@ export default class Detail extends Component {
                   backgroundImage: `url(${
                     PostList[currentIndex + 1].feature_image
                   })`,
-                  width: `${currentIndex > 0 ? "30%" : "45%"}`
+                  width: `${currentIndex > 0 ? '30%' : '45%'}`
                 }}
               >
                 <div
@@ -225,7 +256,7 @@ export default class Detail extends Component {
                   backgroundImage: `url(${
                     PostList[currentIndex - 1].feature_image
                   })`,
-                  width: "30%"
+                  width: '30%'
                 }}
               >
                 <div
@@ -242,6 +273,7 @@ export default class Detail extends Component {
             )}
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

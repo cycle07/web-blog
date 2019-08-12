@@ -15,8 +15,8 @@ import {
 import _ from 'lodash';
 import Header from './header';
 import Home from './home';
-import Footer from './footer';
-import ListHome from './listHome';
+// import Footer from './footer';
+import HomeTag from './homeTag';
 import Loading from './loading';
 import Detail from './detail';
 
@@ -50,8 +50,8 @@ export default class Main extends Component {
     const { mainAction } = this.props;
     mainAction.saveHandle('scrollDom', this.scrollDom.container.firstChild);
     // mainAction.getAuthor();
-    // // mainAction.getTagList();
-    mainAction.getPageList();
+    // mainAction.getTagList();
+    // mainAction.getPageList();
   }
   render() {
     const {
@@ -72,10 +72,10 @@ export default class Main extends Component {
               <Switch>
                 <Redirect exact from="/" to="/home" />
                 <Route path="/home" component={Home} />
-                <Route path="/list" component={ListHome} />
+                <Route path="/hometag/:slug" component={HomeTag} />
                 <Route path="/detail/:slug" component={Detail} />
               </Switch>
-              <Footer />
+              {/* <Footer /> */}
             </div>
           ) : (
             <Loading />

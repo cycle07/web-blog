@@ -5,11 +5,11 @@ import { Component } from 'react';
 import _ from 'lodash';
 import echarts from 'echarts';
 
-
 class ServerDataForm extends Component {
   constructor(props) {
     super(props);
     this.option = {};
+    this.lastFatherTag = null;
   }
   componentDidMount() {
     this.myCharts(this.props.data);
@@ -17,12 +17,26 @@ class ServerDataForm extends Component {
   myCharts(data) {
     const myChart = echarts.init(this.chart);
     myChart.on('click', param => {
-      const id = _.get(param, ['data', 'id']);
-      if (id) {
+      const slug = _.get(param, ['data', 'slug']);
+      const tag = _.get(param, ['data', 'tag']);
+      if (slug) {
+        location.href = `${location.origin}${
+          location.pathname
+        }#/detail/${slug}`;
         this.props.onClose();
+        // location.reload();
+      } else {
+        if (tag && this.lastFatherTag === tag) {
+          location.href = `${location.origin}${
+            location.pathname
+          }#/homeTag/${tag}`;
+          this.props.onClose();
+          // location.reload();
+        } else {
+          this.lastFatherTag = tag;
+        }
       }
     });
-    console.log(data);
     this.option = {
       visualMap: {
         type: 'continuous',
