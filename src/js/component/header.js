@@ -22,7 +22,7 @@ export default class Header extends Component {
     } else if (label === 'Home') {
       location.href = location.origin + location.pathname + '#/home';
     } else if (label === 'About') {
-      location.href = location.origin + location.pathname + '#/About';
+      location.href = location.origin + location.pathname + '#/about';
     }
   }
   handleGoTop() {

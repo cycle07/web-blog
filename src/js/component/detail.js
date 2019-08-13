@@ -70,7 +70,7 @@ export default class Detail extends Component {
       }
     }
     if (this.state.th === 0) {
-      Systemjs.import('isso');
+      // Systemjs.import('isso');
       this.setState({
         th: this.bannerDom.clientHeight
       });

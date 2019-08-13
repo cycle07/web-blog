@@ -19,6 +19,7 @@ import Home from './home';
 import HomeTag from './homeTag';
 import Loading from './loading';
 import Detail from './detail';
+import About from './about';
 
 @inject('main', 'mainAction')
 @observer
@@ -74,6 +75,7 @@ export default class Main extends Component {
                 <Route path="/home" component={Home} />
                 <Route path="/hometag/:slug" component={HomeTag} />
                 <Route path="/detail/:slug" component={Detail} />
+                <Route path="/about" component={About} />
               </Switch>
               {/* <Footer /> */}
             </div>

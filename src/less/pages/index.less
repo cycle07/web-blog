@@ -1,4 +1,4 @@
-@import '~global/common.less';
+@import "~global/common.less";
 
 html {
   overflow: hidden;
@@ -58,13 +58,14 @@ body,
     //     filter: blur(0px);
     // }
     .desc {
-      color: #777;
+      // color: #777;
       font-size: 24px;
       width: 1140px;
       padding: 200px 0 0 0;
       margin: 0 auto;
       text-align: center;
-      text-shadow: 0 0 1px rgba(255,255,255,0.35);
+      animation: fontColor 5s forwards infinite alternate;
+      // text-shadow: 0 0 1px rgba(255,255,255,0.35);
     }
     .go_down {
       position: absolute;
@@ -79,9 +80,26 @@ body,
     .name {
       font-size: 100px;
       margin: -50px auto 0;
-      color: rgba(128, 128, 128, 0.6);
-      text-shadow: 0 0 6px rgba(255,255,255,0.35);
+      // color: rgba(128, 128, 128, 0.6);
+      animation: fontColor2 5s forwards infinite alternate;
+      // text-shadow: 0 0 6px rgba(255,255,255,0.35);
       text-align: center;
+    }
+    @keyframes fontColor {
+      0% {
+        color: rgba(0, 0, 0, 0.75);
+      }
+      100% {
+        color: rgba(255, 255, 255, 0.75);
+      }
+    }
+    @keyframes fontColor2 {
+      0% {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      100% {
+        color: rgba(0, 0, 0, 0.75);
+      }
     }
     // .tagWrap {
     //   position: absolute;
@@ -112,7 +130,7 @@ body,
     position: relative;
     width: 100%;
     &::after {
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
       position: absolute;
@@ -121,7 +139,7 @@ body,
       background: rgba(255, 255, 255, 0.5);
     }
     .mask_gaosi {
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
       position: absolute;
@@ -241,7 +259,8 @@ body,
           margin-bottom: 1.5em;
           line-height: 1.5em;
         }
-        ul, ol {
+        ul,
+        ol {
           margin-bottom: 1.5em;
         }
         figure {
@@ -380,7 +399,7 @@ body,
           z-index: 2;
         }
         &::after {
-          content: '';
+          content: "";
           width: 100%;
           height: 100%;
           position: absolute;
@@ -530,7 +549,7 @@ body,
     }
   }
   &::after {
-    content: '';
+    content: "";
     display: block;
     height: 42px;
     width: 730px;
@@ -569,9 +588,9 @@ body,
 }
 
 footer {
+  background: #000;
   .logo {
     // background: #1e2225;
-    background: #000;
     text-align: center;
     justify-items: center;
     height: 36px;
@@ -596,7 +615,7 @@ footer {
     text-align: center;
     // background: #202226;
     // background: #1e2225;
-    background: #000;
+    // background: #000;Ô
   }
 }
 
@@ -644,7 +663,7 @@ header {
           margin-right: 10px;
         }
         &::before {
-          content: '';
+          content: "";
           width: 1px;
           height: 20px;
           background: #fff;
@@ -709,6 +728,84 @@ header {
         // margin-left: 12px;
         height: 32px;
       }
+    }
+  }
+}
+
+.about {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: aboutBg 3s forwards;
+  @keyframes aboutBg {
+    0% {
+      background: #fff;
+    }
+    50% {
+      background: #100f10;
+    }
+    100% {
+      background: #100f10;
+    }
+  }
+  .img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    animation: aboutImg 3s forwards;
+  }
+  .content {
+    flex: 1;
+    .inner {
+      width: 1140px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.8);
+      animation: aboutImg 3s forwards;
+      text-align: center;
+      padding-top: 220px;
+      display: flex;
+      flex-direction: column;
+      h1 {
+        line-height: 36px;
+        font-size: 20px;
+        transition: 0.3s;
+      }
+      h1:nth-child(2n + 1) {
+        padding-top: 30px;
+      }
+      h1:nth-last-child(1) {
+        font-size: 30px;
+        animation: floating 2s infinite;
+        @keyframes floating {
+          0% {
+            font-size: 30px;
+          }
+          50% {
+            font-size: 20px;
+          }
+          100% {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+  footer {
+    background: transparent;
+    animation: aboutImg 3s forwards;
+  }
+  @keyframes aboutImg {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 }
