@@ -35,7 +35,7 @@
         }
 
         .cup-main::after {
-          content: '';
+          content: "";
           background: linear-gradient(-90deg, #4efcff, #459ef2, #4efcff);
           animation: fader 2s infinite linear;
           width: 100%;
@@ -64,9 +64,10 @@
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag('js', new Date());
-      gtag('config', 'UA-145381144-1');
+      gtag("js", new Date());
+      gtag("config", "UA-145381144-1");
     </script>
+    <!-- <script data-isso="http://192.168.193.102:40404/" src="http://192.168.193.102:40404/js/embed.min.js"></script> -->
     <script>
       var projectOtherConfig = <%= JSON.stringify(htmlWebpackPlugin.options.projectOtherConfig) %>;
       var fedBuildDate = '<%= `${new Date()}` %>'; // 编译时间

@@ -7,6 +7,7 @@ import Footer from './footer';
 import Loading from './loading';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/zenburn.css';
+import Systemjs from 'systemjs';
 
 @inject('main', 'mainAction')
 @observer
@@ -42,7 +43,7 @@ export default class Detail extends Component {
           PostList: res2.posts
         });
       });
-      getPostList({ tag: res.posts[0].tags[0].name }).then(res2 => {
+      getPostList({ tag: res.posts[0].tags[0].slug }).then(res2 => {
         this.setState({
           tagList: res2.posts
         });
@@ -69,6 +70,7 @@ export default class Detail extends Component {
       }
     }
     if (this.state.th === 0) {
+      Systemjs.import('isso');
       this.setState({
         th: this.bannerDom.clientHeight
       });
@@ -272,6 +274,9 @@ export default class Detail extends Component {
               </div>
             )}
           </div>
+        </div>
+        <div id="vcomments">
+          <section id="isso-thread"></section>
         </div>
         <Footer />
       </div>
