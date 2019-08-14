@@ -23,6 +23,8 @@ export default class Header extends Component {
       location.href = location.origin + location.pathname + '#/home';
     } else if (label === 'About') {
       location.href = location.origin + location.pathname + '#/about';
+    } else if (label === 'Record') {
+      location.href = location.origin + location.pathname + '#/record';
     }
   }
   handleGoTop() {
@@ -58,7 +60,7 @@ export default class Header extends Component {
       main: { setting, showTag, touchTop }
     } = this.props;
     const classes = classnames({
-      smallheader: touchTop || /#\/detail/g.test(location.hash)
+      smallheader: touchTop || /[#\/detail|record]/g.test(location.hash)
     });
     return (
       <header className={classes}>

@@ -172,7 +172,7 @@ export default class Detail extends Component {
           </div>
           <div className="inner_right">
             <div className="profile">
-              <div className="about">About Me</div>
+              <div className="about_me">About Me</div>
               <img
                 className="authors_icon"
                 alt=""
@@ -181,7 +181,15 @@ export default class Detail extends Component {
               <div className="authors_name">{`${setting.title}/${
                 data.primary_author.name
               }`}</div>
-              <div className="vs">VISIT PROFILE</div>
+              <div
+                className="vs"
+                onClick={() => {
+                  location.href =
+                    location.origin + location.pathname + '#/about';
+                }}
+              >
+                VISIT PROFILE
+              </div>
             </div>
             <div className="info">
               <div className="date">{getDate(data.updated_at)}</div>
@@ -276,7 +284,7 @@ export default class Detail extends Component {
           </div>
         </div>
         <div id="vcomments">
-          <section id="isso-thread"></section>
+          <section id="isso-thread" />
         </div>
         <Footer />
       </div>

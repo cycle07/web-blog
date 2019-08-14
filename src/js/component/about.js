@@ -18,7 +18,9 @@ const selfIntruction = [
   'fall in Music Game',
   '喜欢音游',
   '~Peace~'
-]
+];
+
+// const selfIntruction = ['ddddd', '1231233333333', '423423ddddd4', 'erertert'];
 
 @inject('main', 'mainAction')
 @observer
@@ -27,19 +29,20 @@ export default class About extends Component {
     super(props);
     this.state = {
       arr: []
-    }
+    };
     this.asyncAdd = this.asyncAdd.bind(this);
   }
-  asyncAdd = item => new Promise((resolve, reject) => {
-    let arr = this.state.arr;
-    arr.push(item);
-    setTimeout(() => {
-      this.setState({
-        arr
-      });
-      resolve(true);
-    }, 1000);
-  });
+  asyncAdd = item =>
+    new Promise((resolve, reject) => {
+      let arr = this.state.arr;
+      arr.push(item);
+      setTimeout(() => {
+        this.setState({
+          arr
+        });
+        resolve(true);
+      }, 1000);
+    });
   async componentDidMount() {
     for (let item of selfIntruction) {
       await this.asyncAdd(item);
@@ -47,12 +50,17 @@ export default class About extends Component {
   }
   render() {
     return (
-      <div className='about' style={{height: `${window.document.body.offsetHeight}px`}}>
+      <div
+        className="about"
+        style={{ height: `${window.document.body.offsetHeight}px` }}
+      >
         <div className="content">
           <div className="inner">
-            {
-              _.map(this.state.arr, item => <h1>{item}</h1>)
-            }
+            <div className="ininner">
+              {_.map(this.state.arr, item => (
+                <h1>{item}</h1>
+              ))}
+            </div>
           </div>
         </div>
         <img className="img" src={Aboutcut} alt="" />

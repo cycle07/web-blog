@@ -20,6 +20,7 @@ import HomeTag from './homeTag';
 import Loading from './loading';
 import Detail from './detail';
 import About from './about';
+import Record from './Record';
 
 @inject('main', 'mainAction')
 @observer
@@ -76,6 +77,7 @@ export default class Main extends Component {
                 <Route path="/hometag/:slug" component={HomeTag} />
                 <Route path="/detail/:slug" component={Detail} />
                 <Route path="/about" component={About} />
+                <Route path="/record" component={Record} />
               </Switch>
               {/* <Footer /> */}
             </div>
