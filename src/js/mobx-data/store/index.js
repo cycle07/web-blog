@@ -14,4 +14,5 @@ export class Main {
   @observable homelspages = 1;
   @observable touchTop = 0;
   @observable scrollDom = null;
+  @observable allList = null;
 }

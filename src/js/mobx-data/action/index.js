@@ -12,6 +12,11 @@ export class MainAction {
     this.props = props;
     const { store } = props;
     this.main = store.main;
+    this.getPostList({ limit: 0 }).then(res => {
+      runInAction(() => {
+        this.main.allList = res.posts;
+      });
+    });
   }
 
   @action('粗祀发')
@@ -40,6 +45,17 @@ export class MainAction {
     if (author) {
       param.filter = `author:${author}`;
     }
+    // console.log(this.main);
+    // if (this.main && this.main.allList) {
+    //   const hasi = _.findIndex(
+    //     this.main.allList,
+    //     item => _.findIndex(item.tags, item2 => item2.slug === tag) !== -1
+    //   );
+    //   console.log(hasi);
+    //   if (tag && hasi !== -1) {
+    //     return this.main.allList[hasi];
+    //   }
+    // }
     return fetch({
       param,
       method: 'posts',

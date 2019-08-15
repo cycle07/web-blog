@@ -60,7 +60,7 @@ export default class Header extends Component {
       main: { setting, showTag, touchTop }
     } = this.props;
     const classes = classnames({
-      smallheader: touchTop || /[#\/detail|record]/g.test(location.hash)
+      smallheader: touchTop || /#\/[detail|about|record]/g.test(location.hash)
     });
     return (
       <header className={classes}>

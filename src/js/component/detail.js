@@ -18,8 +18,7 @@ export default class Detail extends Component {
       data: null,
       th: 0,
       tagList: null,
-      tagImg: null,
-      PostList: null
+      tagImg: null
     };
     this.his = this.props.match.url;
     // this.cw = window.document.body.offsetWidth;
@@ -37,11 +36,6 @@ export default class Detail extends Component {
     getPostDetail(this.props.match.params.slug).then(res => {
       this.setState({
         data: res.posts[0]
-      });
-      getPostList({ limit: 999 }).then(res2 => {
-        this.setState({
-          PostList: res2.posts
-        });
       });
       getPostList({ tag: res.posts[0].tags[0].slug }).then(res2 => {
         this.setState({
@@ -69,7 +63,7 @@ export default class Detail extends Component {
         });
       }
     }
-    if (this.state.th === 0) {
+    if (this.state.th === 0 && this.bannerDom) {
       // Systemjs.import('isso');
       this.setState({
         th: this.bannerDom.clientHeight
@@ -97,10 +91,6 @@ export default class Detail extends Component {
   get getHtml() {
     const { data } = this.state;
     if (data) {
-      // console.log(/\s/g.test(data.html));
-      // return {
-      //   __html: `${data.html.replace(/&lt;/g, '<').replace(/&gt;/g, '>')}`
-      // };
       return {
         __html: data.html
       };
@@ -108,11 +98,13 @@ export default class Detail extends Component {
   }
   render() {
     const {
-      main: { setting }
+      main: { setting, allList }
     } = this.props;
-    const { data, th, tagImg, PostList, tagList } = this.state;
-    const currentIndex = _.findIndex(PostList, item => item.id === data.id);
+    const { data, th, tagImg, tagList } = this.state;
     if (!data) return <Loading />;
+    const currentIndex = allList
+      ? _.findIndex(allList, item => item.id === data.id)
+      : -1;
     return (
       <div className="detail">
         <div
@@ -242,7 +234,7 @@ export default class Detail extends Component {
                 className="sample"
                 style={{
                   backgroundImage: `url(${
-                    PostList[currentIndex + 1].feature_image
+                    allList[currentIndex + 1].feature_image
                   })`,
                   width: `${currentIndex > 0 ? '30%' : '45%'}`
                 }}
@@ -250,12 +242,12 @@ export default class Detail extends Component {
                 <div
                   className="wrap"
                   onClick={() =>
-                    this.handleOnClick(PostList[currentIndex + 1].slug)
+                    this.handleOnClick(allList[currentIndex + 1].slug)
                   }
                 >
                   <div>Previous Post</div>
-                  <div>{PostList[currentIndex + 1].title}</div>
-                  <div>{getDate(PostList[currentIndex + 1].updated_at)}</div>
+                  <div>{allList[currentIndex + 1].title}</div>
+                  <div>{getDate(allList[currentIndex + 1].updated_at)}</div>
                 </div>
               </div>
             )}
@@ -264,7 +256,7 @@ export default class Detail extends Component {
                 className="sample"
                 style={{
                   backgroundImage: `url(${
-                    PostList[currentIndex - 1].feature_image
+                    allList[currentIndex - 1].feature_image
                   })`,
                   width: '30%'
                 }}
@@ -272,12 +264,12 @@ export default class Detail extends Component {
                 <div
                   className="wrap"
                   onClick={() =>
-                    this.handleOnClick(PostList[currentIndex - 1].slug)
+                    this.handleOnClick(allList[currentIndex - 1].slug)
                   }
                 >
                   <div>Next Post</div>
-                  <div>{PostList[currentIndex - 1].title}</div>
-                  <div>{getDate(PostList[currentIndex - 1].updated_at)}</div>
+                  <div>{allList[currentIndex - 1].title}</div>
+                  <div>{getDate(allList[currentIndex - 1].updated_at)}</div>
                 </div>
               </div>
             )}

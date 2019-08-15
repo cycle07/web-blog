@@ -22,3 +22,19 @@ export const getDate = str =>
         : item
     )
     .join(' ');
+
+export const mt = m =>
+  [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ][parseInt(m) - 1];

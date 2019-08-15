@@ -46,6 +46,7 @@ body,
     background-size: cover;
     width: 100%;
     position: relative;
+    user-select:none;
     // margin-bottom: 50px;
     //   &::after {
     //     content: "";
@@ -631,6 +632,7 @@ header {
   display: flex;
   align-items: center;
   transition-duration: 0.3s;
+  user-select:none;
   // transition-delay: 0.1s;
   .inner {
     height: 100%;
@@ -781,21 +783,30 @@ header {
           font-size: 20px;
           transition: 0.3s;
         }
-        h1:nth-child(2n + 1) {
+        .box {
           padding-top: 30px;
+          img {
+            height: 100px;
+            width: 100px;
+            cursor: pointer;
+          }
         }
-        h1:nth-last-child(1) {
-          font-size: 30px;
-          animation: floating 2s infinite;
-          @keyframes floating {
-            0% {
-              font-size: 30px;
-            }
-            50% {
-              font-size: 20px;
-            }
-            100% {
-              font-size: 30px;
+        .box:nth-last-child(1) {
+          h1 {
+            font-size: 30px;
+            animation: floating 2s infinite alternate;
+            @keyframes floating {
+              0% {
+                opacity: 0;
+                font-size: 30px;
+              }
+              50% {
+                font-size: 20px;
+              }
+              100% {
+                opacity: 1;
+                font-size: 30px;
+              }
             }
           }
         }
@@ -823,21 +834,31 @@ header {
 }
 
 .record {
-  background: transparent;
+  .record_wrap {
+    background-image: url(~record.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    padding: 100px 0 120px;
+  }
   .content {
-    width: 100%;
+    width: 1140px;
+    margin: 0 auto;
     .inner {
-      width: 640px;
-      margin: 120px auto 0;
-      background: #FEFEF7;
+      width: 720px;
+      background: #fefef7;
       .year {
         .year_title {
           font-size: 50px;
-          color: #FEFEF7;
+          color: #fefef7;
           padding: 0 50px;
           line-height: 120px;
-          background: #2B424E;
+          background: #2b424e;
           font-weight: bold;
+          span {
+            color: #ee4d64;
+            font-size: 30px;
+            padding: 0 15px;
+          }
         }
       }
       .month {
@@ -848,26 +869,61 @@ header {
         .month_title {
           position: absolute;
           height: 100%;
-          line-height: 100%;
-          color: #2B424E;
-          font-size: 30px;
-          width: 200px;
+          width: 180px;
           text-align: right;
-          top: 20%;
-          left: 20px;
+          display: flex;
+          align-items: center;
+          // top: 20%;
+          // left: 20px;
           // border-right: 50px solid #EE4D64;
           // margin-right: -30px;
+          .month_title_inner {
+            color: #2b424e;
+            font-size: 30px;
+            font-weight: bold;
+            // height: 100%;
+            width: 100%;
+          }
         }
         .month_content {
           height: 100%;
-          border-left: 50px solid #EE4D64;
-          width: calc(100% - 200px);
-          margin-left: 200px;
+          border-left: 50px solid #ee4d64;
+          width: calc(100% - 160px);
+          margin-left: 160px;
           .day {
+            cursor: pointer;
             width: 100%;
+            padding: 25px 60px 25px 25px;
+            line-height: 20px;
+            // display: flex;
+            // align-items: center;
+            > div {
+              color: #ee4d64;
+              padding-right: 10px;
+              display: flex;
+              width: 100%;
+              h1 {
+                font-size: 16px;
+                font-weight: bold;
+                .slh();
+                max-width: calc(100% - 70px);
+              }
+              i {
+                font-style: normal;
+                font-size: 15px;
+                padding-left: 5px;
+                padding-right: 5px;
+              }
+            }
             > span {
-              word-wrap: break-word; 
+              padding: 8px 0 0 10px;
+              font-size: 15px;
+              word-wrap: break-word;
               .slh2();
+            }
+            &:hover {
+              background: #ebe5dd;
+              translate: 0.3s;
             }
           }
         }
@@ -875,6 +931,9 @@ header {
     }
   }
   footer {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.45);
+    // position: fixed;
+    // bottom: 0;
+    // width: 100%;
   }
 }

@@ -7,20 +7,27 @@ import { observer, inject } from 'mobx-react';
 import _ from 'lodash';
 import Footer from './footer';
 import Aboutcut from 'img/aboutcut.jpg';
+import Penzai from 'img/penzai.svg';
 
 const selfIntruction = [
-  'Unprofessional Front-end coder',
-  '不务正业的前端程序员',
-  'skimmed piano',
-  '会弹一点曲子',
-  'Once in a draw',
-  '会画一点画',
-  'fall in Music Game',
-  '喜欢音游',
+  {
+    e: 'Unprofessional Front-end coder',
+    z: '不务正业的前端程序员'
+  },
+  {
+    e: 'skimmed piano',
+    z: '会弹一点曲子'
+  },
+  {
+    e: 'Once in a draw',
+    z: '会画一点画'
+  },
+  {
+    e: 'fall in Music Game',
+    z: '喜欢音游'
+  },
   '~Peace~'
 ];
-
-// const selfIntruction = ['ddddd', '1231233333333', '423423ddddd4', 'erertert'];
 
 @inject('main', 'mainAction')
 @observer
@@ -57,13 +64,34 @@ export default class About extends Component {
         <div className="content">
           <div className="inner">
             <div className="ininner">
-              {_.map(this.state.arr, item => (
-                <h1>{item}</h1>
-              ))}
+              {_.map(this.state.arr, item => {
+                if (item.e) {
+                  return (
+                    <div className="box">
+                      <h1>{item.e}</h1>
+                      <h1>{item.z}</h1>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="box" alt="github">
+                      <img
+                        src={Penzai}
+                        alt="github"
+                        onClick={() => {
+                          const openWindow = open();
+                          openWindow.location.href =
+                            'https://github.com/cycle07';
+                        }}
+                      />
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
         </div>
-        <img className="img" src={Aboutcut} alt="" />
+        <img className='img' src={Aboutcut} alt="" />
         <Footer />
       </div>
     );
