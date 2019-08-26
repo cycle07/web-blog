@@ -1,22 +1,23 @@
-import { Component } from 'react';
-import { toJS } from 'mobx';
-import { observer, inject } from 'mobx-react';
-import _ from 'lodash';
-import GoDownSvg from 'img/goDown.svg';
-import Li from './li';
-import Footer from './footer';
-import Page from './page';
+import { Component } from "react";
+import { toJS } from "mobx";
+import { observer, inject } from "mobx-react";
+import _ from "lodash";
+import GoDownSvg from "img/goDown.svg";
+import Li from "./li";
+import Footer from "./footer";
+import Page from "./page";
 
-@inject('main', 'mainAction')
+@inject("main", "mainAction")
 @observer
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.his = this.props.match.url;
     this.ch = window.document.body.offsetHeight;
+    this.cw = window.document.body.offsetWidth;
     this.goDown = this.goDown.bind(this);
     this.getList = this.getList.bind(this);
-    this.getList(1, '0');
+    this.getList(1, "0");
   }
   getList(page, goTop) {
     const {
@@ -28,13 +29,13 @@ export default class Home extends Component {
         page
       })
       .then(res => {
-        mainAction.saveHandle('homelist', res.posts);
-        mainAction.saveHandle('homelspage', page);
-        mainAction.saveHandle('homelspages', res.meta.pagination.pages);
+        mainAction.saveHandle("homelist", res.posts);
+        mainAction.saveHandle("homelspage", page);
+        mainAction.saveHandle("homelspages", res.meta.pagination.pages);
         if (scrollDom && goTop) {
           scrollDom.scrollTo({
             top: goTop,
-            behavior: 'smooth'
+            behavior: "smooth"
           });
         }
       });
@@ -46,7 +47,7 @@ export default class Home extends Component {
     if (scrollDom) {
       scrollDom.scrollTo({
         top: this.ch,
-        behavior: 'smooth'
+        behavior: "smooth"
       });
     }
   }
@@ -75,18 +76,25 @@ export default class Home extends Component {
         <div
           className="banner"
           style={{
-            'background-image': `url(${setting.cover_image})`,
+            "background-image": `url(${setting.cover_image})`,
             height: `${this.ch}px`
           }}
         >
-          <div className="desc">{`“${setting.description}”`}</div>
+          <div className="home_desc">{`“${setting.description}”`}</div>
+          <span className="home_big">AD:</span>
+          <span className="home_name">STRUCTURE</span>
+          <div
+            className="mask"
+            style={{
+              top: `${this.ch / 2 - 50}px`
+            }}
+          />
           {touchTop < this.ch - 500 && (
             <div className="go_down" onClick={this.goDown}>
               <img src={GoDownSvg} alt="" />
             </div>
           )}
         </div>
-        <div id="home" />
         {homelist.length > 0 && (
           <ul className="list">
             {_.map(toJS(homelist), item => (

@@ -1,4 +1,4 @@
-@import '~global/common.less';
+@import "~global/common.less";
 
 html {
   overflow: hidden;
@@ -46,7 +46,8 @@ body,
     background-size: cover;
     width: 100%;
     position: relative;
-    user-select:none;
+    user-select: none;
+    overflow: hidden;
     // margin-bottom: 50px;
     //   &::after {
     //     content: "";
@@ -58,15 +59,81 @@ body,
     //     background: inherit;
     //     filter: blur(0px);
     // }
-    .desc {
-      // color: #777;
-      font-size: 24px;
-      width: 1140px;
-      padding: 200px 0 0 0;
-      margin: 0 auto;
-      text-align: center;
-      animation: fontColor 5s forwards infinite alternate;
-      // text-shadow: 0 0 1px rgba(255,255,255,0.35);
+    .mask {
+      width: 200%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      // top: 405px;
+      transform-origin: 0 0;
+      transform: rotate(15deg);
+      animation: homemask 6s infinite alternate;
+      // box-shadow: 5px 5px 5px rgba(255,255,255,0.5);
+      // background: inherit;
+      @keyframes homemask {
+        0% {
+          background: rgba(255, 255, 255, 0.2);
+        }
+        50% {
+          background: rgba(255, 255, 255, 0.6);
+        }
+        100% {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+    .home_big {
+      font-size: 200px;
+      position: absolute;
+      top: 0;
+      right: 170px;
+      line-height: 200px;
+      animation: team1 0.6s;
+      // color: transparent;
+      color: rgba(0, 0, 0, 0.4);
+    }
+    .home_name {
+      display: inline-block;
+      transform-origin: 0 0;
+      transform: rotate(90deg);
+      font-size: 160px;
+      // color: transparent;
+      color: rgba(118, 118, 118, 0.4);
+      position: absolute;
+      left: 100%;
+      top: 35px;
+      animation: team1 0.6s 0.1s;
+    }
+    .home_desc {
+      position: absolute;
+      top: 200px;
+      right: 200px;
+      font-size: 25px;
+      // color: transparent;
+      color: rgba(255, 255, 255, 0.2);
+      animation: team1 0.6s 0.2s;
+    }
+    @keyframes team1 {
+      0% {
+        color: transparent;
+        background-image: url(~pattern2@2x.gif);
+      }
+      5% {
+        color: #000;
+      }
+      10% {
+        color: #fff;
+      }
+      15% {
+        color: #000;
+      }
+      20% {
+        color: transparent;
+      }
+      100% {
+        background: transparent;
+        // color: rgba(0, 0, 0, 0.4);
+      }
     }
     .go_down {
       position: absolute;
@@ -77,6 +144,7 @@ body,
       width: 50px;
       height: 50px;
       cursor: pointer;
+      z-index: 3;
     }
     .name {
       font-size: 100px;
@@ -85,6 +153,16 @@ body,
       animation: fontColor2 5s forwards infinite alternate;
       // text-shadow: 0 0 6px rgba(255,255,255,0.35);
       text-align: center;
+    }
+    .desc {
+      // color: #777;
+      font-size: 24px;
+      width: 1140px;
+      padding: 200px 0 0 0;
+      margin: 0 auto;
+      text-align: center;
+      animation: fontColor 5s forwards infinite alternate;
+      // text-shadow: 0 0 1px rgba(255,255,255,0.35);
     }
     @keyframes fontColor {
       0% {
@@ -131,7 +209,7 @@ body,
     position: relative;
     width: 100%;
     &::after {
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
       position: absolute;
@@ -140,7 +218,7 @@ body,
       background: rgba(255, 255, 255, 0.5);
     }
     .mask_gaosi {
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
       position: absolute;
@@ -400,7 +478,7 @@ body,
           z-index: 2;
         }
         &::after {
-          content: '';
+          content: "";
           width: 100%;
           height: 100%;
           position: absolute;
@@ -550,7 +628,7 @@ body,
     }
   }
   &::after {
-    content: '';
+    content: "";
     display: block;
     height: 42px;
     width: 730px;
@@ -632,7 +710,7 @@ header {
   display: flex;
   align-items: center;
   transition-duration: 0.3s;
-  user-select:none;
+  user-select: none;
   // transition-delay: 0.1s;
   .inner {
     height: 100%;
@@ -665,7 +743,7 @@ header {
           margin-right: 10px;
         }
         &::before {
-          content: '';
+          content: "";
           width: 1px;
           height: 20px;
           background: #fff;
@@ -760,7 +838,7 @@ header {
     animation: aboutImg 3s forwards;
   }
   .content {
-    position: absolute;
+    // position: absolute;
     z-index: 2;
     // flex: 1;
     .inner {
