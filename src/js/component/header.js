@@ -1,12 +1,12 @@
-import { Component } from 'react';
-import classnames from 'classnames';
-import { observer, inject } from 'mobx-react';
-import Tag from './tag';
-import _ from 'lodash';
-import GoTop from 'img/goTop.svg';
-import Icon from 'public/icon';
+import { Component } from "react";
+import classnames from "classnames";
+import { observer, inject } from "mobx-react";
+import Tag from "./tag";
+import _ from "lodash";
+import GoTop from "img/goTop.svg";
+import Icon from "public/icon";
 
-@inject('main', 'mainAction')
+@inject("main", "mainAction")
 @observer
 export default class Header extends Component {
   constructor(props) {
@@ -15,16 +15,19 @@ export default class Header extends Component {
     this.handleGoTop = this.handleGoTop.bind(this);
     this.handleAddFav = this.handleAddFav.bind(this);
   }
-  handleClick(label) {
+  handleClick(label, url = "") {
     const { mainAction } = this.props;
-    if (label === 'Tag') {
+    if (label === "Tag") {
       mainAction.switchTag();
-    } else if (label === 'Home') {
-      location.href = location.origin + location.pathname + '#/home';
-    } else if (label === 'About') {
-      location.href = location.origin + location.pathname + '#/about';
-    } else if (label === 'Record') {
-      location.href = location.origin + location.pathname + '#/record';
+    } else if (label === "Home") {
+      location.href = location.origin + location.pathname + "#/home";
+    } else if (label === "About") {
+      location.href = location.origin + location.pathname + "#/about";
+    } else if (label === "Record") {
+      location.href = location.origin + location.pathname + "#/record";
+    } else {
+      const openWindow = open();
+      openWindow.location.href = url;
     }
   }
   handleGoTop() {
@@ -34,20 +37,20 @@ export default class Header extends Component {
     if (scrollDom) {
       scrollDom.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth"
       });
     }
   }
   handleAddFav() {
     if (window.sidebar) {
       // Mozilla Firefox Bookmark
-      window.sidebar.addPanel(location.href, document.title, '');
+      window.sidebar.addPanel(location.href, document.title, "");
     } else if (window.external) {
       // IE Favorite
       if (window.external.AddFavorite) {
         window.external.AddFavorite(location.href, document.title);
       } else {
-        alert('Please use ctrl+D');
+        alert("Please use ctrl+D");
       }
     } else if (window.opera && window.print) {
       // Opera Hotlist
@@ -65,7 +68,7 @@ export default class Header extends Component {
     return (
       <header className={classes}>
         <div className="inner">
-          <div className="logo" onClick={() => this.handleClick('Home')}>
+          <div className="logo" onClick={() => this.handleClick("Home")}>
             <img src={setting.logo} alt="" />
           </div>
           <ul>
@@ -73,7 +76,7 @@ export default class Header extends Component {
               <li>
                 <span
                   onClick={() => {
-                    this.handleClick(item.label);
+                    this.handleClick(item.label, item.url);
                   }}
                 >
                   {_.upperCase(item.label)}
@@ -91,7 +94,7 @@ export default class Header extends Component {
               <Icon
                 type="tubiao212"
                 onClick={() => {
-                  alert('Deving...');
+                  alert("Deving...");
                 }}
               />
             </div>
