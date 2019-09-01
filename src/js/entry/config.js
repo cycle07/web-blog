@@ -3,15 +3,15 @@
  * systemjs加载配置
  */
 
-import Systemjs from 'systemjs';
-import _cdnHost from 'config/cdn-host';
+import Systemjs from "systemjs";
+import _cdnHost from "config/cdn-host";
 
 const { SystemJSConfig, fedBuildDate } = window;
 
 let cdnHost = _cdnHost;
 
 if (__DEV__) {
-  cdnHost = 'http://localhost:8080/web-cdn/release';
+  cdnHost = "http://localhost:8080/web-cdn/release";
 }
 
 const mapListObj = {
@@ -19,7 +19,7 @@ const mapListObj = {
   map: {
     echarts: `${cdnHost}/js/echarts/4.1.0/echarts.min.js`,
     // 'icon-new': `${cdnHost}/icon/sort-pc-management-menu/1.0.0/iconfont.js` // 过度阶段，后期会更新到config中
-    // icon: '//at.alicdn.com/t/font_1337932_sx74yg2k24i.js',
+    icon: "//at.alicdn.com/t/font_1337932_sx74yg2k24i.js"
     // isso: 'http://192.168.193.102:40404/js/embed.min.js'
   },
   meta: {
@@ -36,9 +36,7 @@ const mainListObj = {
     // 入口文件 签名
     ToLoad: true, // 是否马上加载
     // 依赖库
-    deps: ['react', 'react-router-dom', 'mobx', 'mobx-react', 'echarts', 
-    // 'icon'
-  ]
+    deps: ["react", "react-router-dom", "mobx", "mobx-react", "echarts", "icon"]
   }
 };
 for (const key in SystemJSConfig.meta) {

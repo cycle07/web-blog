@@ -87,7 +87,7 @@ export default class Header extends Component {
               <Icon
                 type="rss"
                 onClick={() => {
-                  location.href = `https://www.cycle07.com/rss`;
+                  location.href = `https://www.cycle07.com:30301/rss/`;
                 }}
               />
               <Icon type="shoucang" onClick={this.handleAddFav} />

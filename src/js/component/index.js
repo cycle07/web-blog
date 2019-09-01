@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import scrollbarSetting from 'helpers/scrollbarstyle';
 import { Scrollbars } from 'helpers/scroll';
+import TitleIcon from 'img/oldIcon.ico';
 import {
   Route,
   Redirect,
@@ -37,7 +38,8 @@ export default class Main extends Component {
         main: { setting }
       } = this.props;
       document.title = setting.title;
-      document.getElementById('favicon').setAttribute('href', setting.icon);
+      document.getElementById('favicon').setAttribute('href', TitleIcon);
+      // document.getElementById('favicon').setAttribute('href', setting.icon || TitleIcon);
     });
   }
   handleScroll(e) {
