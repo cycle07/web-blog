@@ -1,15 +1,15 @@
-import { Component } from 'react';
-import { getDate } from 'helpers/time-deal';
-import { observer, inject } from 'mobx-react';
-import _ from 'lodash';
-import Footer from './footer';
+import { Component } from "react";
+import { getDate } from "helpers/time-deal";
+import { observer, inject } from "mobx-react";
+import _ from "lodash";
+import Footer from "./footer";
 
-import Loading from './loading';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/zenburn.css';
-import Systemjs from 'systemjs';
+import Loading from "./loading";
+import hljs from "highlight.js";
+import "highlight.js/styles/zenburn.css";
+import Systemjs from "systemjs";
 
-@inject('main', 'mainAction')
+@inject("main", "mainAction")
 @observer
 export default class Detail extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export default class Detail extends Component {
       if (scrollDom) {
         scrollDom.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth"
         });
       }
     }
@@ -70,29 +70,31 @@ export default class Detail extends Component {
       });
     }
     if (this.html) {
-      const blocks = this.html.querySelectorAll('pre code');
+      const blocks = this.html.querySelectorAll("pre code");
       _.map(blocks, item => {
         hljs.highlightBlock(item);
       });
-      const imgDoms = this.html.querySelectorAll('img');
+      const imgDoms = this.html.querySelectorAll("img");
       _.map(imgDoms, item => {
-        if (item.getAttribute('width')) {
-          const rate = item.getAttribute('width') / item.getAttribute('height');
-          item.parentNode.setAttribute('style', `flex: ${rate} 1 0%;`);
+        if (item.getAttribute("width")) {
+          const rate = item.getAttribute("width") / item.getAttribute("height");
+          item.parentNode.setAttribute("style", `flex: ${rate} 1 0%;`);
         }
       });
     }
   }
-  handleOnClick(slug = '', type = 'detail') {
+  handleOnClick(slug = "", type = "detail") {
     const { history } = this.props;
     history.push(`/${type}/${slug}`);
     // location.reload();
   }
   get getHtml() {
     const { data } = this.state;
+    console.log(data.html);
     if (data) {
       return {
         __html: data.html
+        // .replace(/<\!\-\-kg\-card\-end: markdown\-\->/g, '').replace(/<\!\-\-kg\-card\-begin: markdown\-\->/g, '')
       };
     }
   }
@@ -129,7 +131,7 @@ export default class Detail extends Component {
                   <i className="tags">
                     {_.map(data.tags, item => (
                       <i
-                        onClick={() => this.handleOnClick(item.slug, 'hometag')}
+                        onClick={() => this.handleOnClick(item.slug, "hometag")}
                       >
                         {`${item.name} `}
                       </i>
@@ -169,15 +171,17 @@ export default class Detail extends Component {
                 className="authors_icon"
                 alt=""
                 src={data.primary_author.profile_image}
+                onclick={() => {
+                  location.href =
+                    location.origin + location.pathname + "#/about";
+                }}
               />
-              <div className="authors_name">{`${setting.title}/${
-                data.primary_author.name
-              }`}</div>
+              <div className="authors_name">{`${setting.title}/${data.primary_author.name}`}</div>
               <div
                 className="vs"
                 onClick={() => {
                   location.href =
-                    location.origin + location.pathname + '#/about';
+                    location.origin + location.pathname + "#/about";
                 }}
               >
                 VISIT PROFILE
@@ -189,7 +193,7 @@ export default class Detail extends Component {
                 {_.map(data.tags, item => (
                   <div
                     className="item_tag"
-                    onClick={() => this.handleOnClick(item.slug, 'hometag')}
+                    onClick={() => this.handleOnClick(item.slug, "hometag")}
                   >
                     <span>{item.name}</span>
                   </div>
@@ -205,25 +209,29 @@ export default class Detail extends Component {
                 className="tag_main"
                 style={{
                   backgroundImage: `url(${tagImg})`,
-                  width: `${currentIndex > 0 ? '30%' : '45%'}`
+                  width: `${currentIndex > 0 ? "30%" : "45%"}`
                 }}
               >
                 <div className="wrap">
                   <div>{`- ${setting.title} -`}</div>
                   <div>{`${data.tags[0].name}`}</div>
-                  <div>{'♾'}</div>
+                  <div>{"♾"}</div>
                   <div onClick={() => this.handleOnClick(tagList[0].slug)}>
                     {tagList[0].title}
                   </div>
-                  <div onClick={() => this.handleOnClick(tagList[1].slug)}>
-                    {_.get(tagList, [1, 'title'], null)}
-                  </div>
-                  <div onClick={() => this.handleOnClick(tagList[2].slug)}>
-                    {_.get(tagList, [2, 'title'], null)}
-                  </div>
+                  {tagList[1] && (
+                    <div onClick={() => this.handleOnClick(tagList[1].slug)}>
+                      {_.get(tagList, [1, "title"], null)}
+                    </div>
+                  )}
+                  {tagList[2] && (
+                    <div onClick={() => this.handleOnClick(tagList[2].slug)}>
+                      {_.get(tagList, [2, "title"], null)}
+                    </div>
+                  )}
                   <div
                     onClick={() =>
-                      this.handleOnClick(data.tags[0].slug, 'hometag')
+                      this.handleOnClick(data.tags[0].slug, "hometag")
                     }
                   >{`See all ${tagList.length} post >`}</div>
                 </div>
@@ -233,10 +241,8 @@ export default class Detail extends Component {
               <div
                 className="sample"
                 style={{
-                  backgroundImage: `url(${
-                    allList[currentIndex + 1].feature_image
-                  })`,
-                  width: `${currentIndex > 0 ? '30%' : '45%'}`
+                  backgroundImage: `url(${allList[currentIndex + 1].feature_image})`,
+                  width: `${currentIndex > 0 ? "30%" : "45%"}`
                 }}
               >
                 <div
@@ -255,10 +261,8 @@ export default class Detail extends Component {
               <div
                 className="sample"
                 style={{
-                  backgroundImage: `url(${
-                    allList[currentIndex - 1].feature_image
-                  })`,
-                  width: '30%'
+                  backgroundImage: `url(${allList[currentIndex - 1].feature_image})`,
+                  width: "30%"
                 }}
               >
                 <div

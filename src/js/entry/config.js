@@ -17,7 +17,9 @@ if (__DEV__) {
 const mapListObj = {
   // 自定义map和依赖关系,可覆盖cdn中的配置(注释的是例子
   map: {
-    echarts: `${cdnHost}/js/echarts/4.1.0/echarts.min.js`,
+    // echarts: `${cdnHost}/js/echarts/4.1.0/echarts.min.js`,
+    // echarts: `//cdn.bootcss.com/echarts/4.1.0/echarts.min.js`,
+    echarts: `https://cdnjs.cloudflare.com/ajax/libs/echarts/4.1.0/echarts.min.js`,
     // 'icon-new': `${cdnHost}/icon/sort-pc-management-menu/1.0.0/iconfont.js` // 过度阶段，后期会更新到config中
     icon: "//at.alicdn.com/t/font_1337932_sx74yg2k24i.js"
     // isso: 'http://192.168.193.102:40404/js/embed.min.js'
@@ -29,6 +31,33 @@ const mapListObj = {
     // }
   }
 };
+
+// if (__DEV__) {
+mapListObj.map[
+  "prop-types"
+] = `https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.1/prop-types.min.js`;
+mapListObj.map[
+  "react"
+] = `https://cdnjs.cloudflare.com/ajax/libs/react/16.9.0/umd/react.production.min.js`;
+mapListObj.map[
+  "react-dom"
+] = `https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js`;
+mapListObj.map[
+  "react-router-dom"
+] = `https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/4.2.2/react-router-dom.min.js`;
+mapListObj.map[
+  "mobx"
+] = `https://cdnjs.cloudflare.com/ajax/libs/mobx/4.3.2/mobx.umd.min.js`;
+mapListObj.map[
+  "mobx-react"
+] = `https://cdnjs.cloudflare.com/ajax/libs/mobx-react/5.1.2/index.min.js`;
+mapListObj.meta["ReactDom"] = {
+  deps: ["react"]
+};
+mapListObj.meta["mobx-react"] = {
+  deps: ["react", "react-dom", "mobx", "prop-types"]
+};
+// }
 
 const mainListObj = {
   // 载入文件的配置

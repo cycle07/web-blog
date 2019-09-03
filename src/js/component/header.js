@@ -71,23 +71,27 @@ export default class Header extends Component {
           <div className="logo" onClick={() => this.handleClick("Home")}>
             <img src={setting.logo} alt="" />
           </div>
-          <ul>
-            {_.map(setting.navigation, item => (
-              <li>
-                <span
-                  onClick={() => {
-                    this.handleClick(item.label, item.url);
-                  }}
-                >
-                  {_.upperCase(item.label)}
-                </span>
-              </li>
-            ))}
+          <div className="header_right">
+            <ul>
+              {_.map(setting.navigation, item => (
+                <li>
+                  <span
+                    onClick={() => {
+                      this.handleClick(item.label, item.url);
+                    }}
+                  >
+                    {_.upperCase(item.label)}
+                  </span>
+                </li>
+              ))}
+            </ul>
             <div className="icons">
               <Icon
                 type="rss"
                 onClick={() => {
-                  location.href = `https://www.cycle07.com:30301/rss/`;
+                  const openWindow = open();
+                  openWindow.location.href =
+                    "https://www.cycle07.com:30301/rss/";
                 }}
               />
               <Icon type="shoucang" onClick={this.handleAddFav} />
@@ -98,7 +102,7 @@ export default class Header extends Component {
                 }}
               />
             </div>
-          </ul>
+          </div>
         </div>
         {showTag && <Tag />}
         {touchTop !== 0 && (
