@@ -83,6 +83,8 @@ function Last({ data, build, path, userConfig, packPath }) {
   // data.externals['webModule-im'] = 'webModule-im';
 
   data.externals.echarts = 'echarts';
+  data.externals.highlight = 'highlight';
+  data.externals.highlightcss = 'highlightcss';
   // data.externals.classnames = 'classnames';
   // data.externals.Apiutil = 'Apiutil';
 
